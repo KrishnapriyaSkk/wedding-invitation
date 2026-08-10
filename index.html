@@ -1,0 +1,1692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#6f1730" />
+  <title>Krishnapriya & Nithin | Wedding Invitation</title>
+
+  <!-- Free Google Fonts. You can remove this line if you want the site fully offline. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=Noto+Serif+Malayalam:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --maroon: #74152d;
+      --deep-maroon: #24060f;
+      --lux-red: #4a0a1c;
+      --wine: #5c0e25;
+      --gold: #c99a3d;
+      --soft-gold: #efd07b;
+      --cream: #ead5b0;
+      --ivory: #f0dfc0;
+      --ink: #f4e5c6;
+      --muted: #c7aa87;
+      --shadow: 0 25px 70px rgba(59, 11, 26, .16);
+      --serif: "Cormorant Garamond", Georgia, serif;
+      --sans: "DM Sans", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 20% 10%, rgba(201,154,61,.10), transparent 25%),
+        radial-gradient(circle at 80% 30%, rgba(116,21,45,.12), transparent 28%),
+        #2d0714;
+      font-family: var(--sans);
+      overflow-x: hidden;
+    }
+
+    body.locked { overflow: hidden; }
+
+    a { color: inherit; }
+    button { font: inherit; }
+
+    /* ---------- Opening screen ---------- */
+    .opening {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background:
+        radial-gradient(circle at 50% 30%, rgba(230,200,117,.12), transparent 25%),
+        linear-gradient(145deg, #3b0b1a, #6f1730 55%, #4a0e20);
+      transition: opacity 1s ease, visibility 1s ease;
+    }
+
+    .opening::before,
+    .opening::after {
+      content: "✦";
+      position: absolute;
+      color: rgba(230,200,117,.5);
+      font-size: 20px;
+      animation: float 5s ease-in-out infinite;
+    }
+    .opening::before { top: 15%; left: 15%; }
+    .opening::after { right: 15%; bottom: 18%; animation-delay: -2s; }
+
+    .opening.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .envelope {
+      width: min(92vw, 520px);
+      height: min(76vw, 380px);
+      max-height: 72vh;
+      position: relative;
+      perspective: 1200px;
+      cursor: pointer;
+      filter: drop-shadow(0 30px 45px rgba(0,0,0,.28));
+    }
+
+    .envelope-back {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #7c1e39, #5b1028);
+      border: 1px solid rgba(230,200,117,.55);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .envelope-back::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border: 1px solid rgba(230,200,117,.35);
+      border-radius: 6px;
+    }
+
+    .envelope-flap {
+      position: absolute;
+      z-index: 4;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 58%;
+      transform-origin: top center;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      background: linear-gradient(135deg, #8c2745, #68142e);
+      border-top: 1px solid rgba(230,200,117,.65);
+      transition: transform 1.1s cubic-bezier(.22,.75,.2,1);
+    }
+
+    .envelope.open .envelope-flap {
+      transform: rotateX(180deg);
+    }
+
+    .seal {
+      position: absolute;
+      z-index: 6;
+      left: 50%;
+      top: 51%;
+      transform: translate(-50%, -50%);
+      width: 74px;
+      height: 74px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--soft-gold);
+      border: 2px solid var(--soft-gold);
+      background: #74152d;
+      font-family: var(--serif);
+      font-size: 28px;
+      transition: opacity .4s ease, transform .6s ease;
+    }
+
+    .envelope.open .seal {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(.7);
+    }
+
+    .opening-copy {
+      position: absolute;
+      z-index: 7;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: #fff8e7;
+      pointer-events: none;
+    }
+
+    .opening-copy-inner { margin-top: 18%; }
+    .opening-small {
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      font-size: 10px;
+      color: var(--soft-gold);
+      margin-bottom: 10px;
+    }
+    .opening-names {
+      font: 600 clamp(34px, 8vw, 60px)/.9 var(--serif);
+    }
+    .opening-hint {
+      margin-top: 30px;
+      font-size: 12px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: rgba(255,248,231,.8);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    /* ---------- Decorative motif ---------- */
+    .motif {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--gold);
+      margin: 16px 0 24px;
+    }
+    .motif::before, .motif::after {
+      content: "";
+      width: 72px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold));
+    }
+    .motif::after { transform: rotate(180deg); }
+    .motif span { font-size: 18px; }
+
+    .section {
+      min-height: 100vh;
+      position: relative;
+      display: grid;
+      place-items: center;
+      padding: 100px 22px;
+      overflow: hidden;
+    }
+
+    .section::before {
+      content: "";
+      position: absolute;
+      inset: 24px;
+      border: 1px solid rgba(198,154,59,.14);
+      border-radius: 28px;
+      pointer-events: none;
+    }
+
+    .container {
+      width: min(1080px, 100%);
+      margin: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: #efd07b;
+      font-weight: 600;
+    }
+
+    h1, h2, h3 {
+      font-family: var(--serif);
+      font-weight: 600;
+      margin: 0;
+    }
+
+    h2 {
+      font-size: clamp(44px, 7vw, 76px);
+      line-height: .95;
+      color: #f1d79a;
+    }
+
+    p { line-height: 1.8; }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      min-height: 100svh;
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 40%, rgba(201,154,61,.14), transparent 34%),
+        radial-gradient(circle at 50% 85%, rgba(116,21,45,.38), transparent 45%),
+        linear-gradient(180deg, #3a0918, #260610);
+    }
+
+    .hero-card {
+      width: min(820px, 100%);
+      padding: 80px 25px;
+      border: 1px solid rgba(198,154,59,.5);
+      border-radius: 16px;
+      background: linear-gradient(145deg, rgba(87,11,31,.88), rgba(39,5,15,.92));
+      color: #f4e5c6;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(5px);
+      position: relative;
+    }
+
+    .hero-card::before,
+    .hero-card::after {
+      content: "❋";
+      position: absolute;
+      color: rgba(198,154,59,.5);
+      font-size: 28px;
+    }
+    .hero-card::before { top: 18px; left: 22px; }
+    .hero-card::after { bottom: 18px; right: 22px; }
+
+    .hero-names {
+      font-size: clamp(54px, 10vw, 110px);
+      line-height: .8;
+      color: #efd07b;
+      margin: 28px 0;
+    }
+    .amp { color: var(--gold); font-style: italic; }
+
+    .hero-date {
+      font: 500 22px var(--serif);
+      color: var(--muted);
+    }
+
+    .scroll-note {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .22em;
+      color: var(--muted);
+    }
+
+    .scroll-note::after {
+      content: "";
+      display: block;
+      width: 1px;
+      height: 42px;
+      margin: 10px auto 0;
+      background: var(--gold);
+      animation: scrollLine 1.7s ease-in-out infinite;
+    }
+
+    /* ---------- People ---------- */
+    .person-section {
+      background:
+        radial-gradient(circle at 50% 20%, rgba(201,154,61,.08), transparent 30%),
+        linear-gradient(180deg, #3a0918, #250610);
+    }
+
+    .person-grid {
+      display: grid;
+      grid-template-columns: minmax(260px, 440px) 1fr;
+      align-items: center;
+      gap: clamp(40px, 8vw, 100px);
+    }
+
+    .person-section.reverse .person-grid {
+      grid-template-columns: 1fr minmax(260px, 440px);
+    }
+    .person-section.reverse .portrait-wrap { order: 2; }
+    .person-section.reverse .person-copy { order: 1; }
+
+    .portrait-wrap {
+      position: relative;
+    }
+
+    .portrait-frame {
+      aspect-ratio: 4 / 5;
+      padding: 12px;
+      border: 1px solid var(--gold);
+      background: #4a0a1c;
+      box-shadow: var(--shadow);
+      transform: rotate(-1.5deg);
+    }
+
+    .person-section.reverse .portrait-frame { transform: rotate(1.5deg); }
+
+    .portrait-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      background:
+        linear-gradient(135deg, rgba(111,23,48,.12), rgba(198,154,59,.12)),
+        #eee1c9;
+    }
+
+    .portrait-caption {
+      margin-top: -35px;
+      margin-left: 25px;
+      margin-right: 25px;
+      position: relative;
+      background: #74152d;
+      color: #fff8e7;
+      padding: 18px 20px;
+      text-align: center;
+      box-shadow: 0 15px 30px rgba(59,11,26,.18);
+    }
+
+    .portrait-caption h3 {
+      font-size: 34px;
+      color: var(--soft-gold);
+    }
+
+    .parents {
+      margin-top: 30px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(198,154,59,.4);
+      color: var(--muted);
+    }
+
+    .parents strong {
+      display: block;
+      color: #f1d79a;
+      font-family: var(--serif);
+      font-size: 22px;
+      margin-top: 4px;
+    }
+
+    /* ---------- Details ---------- */
+    .details {
+      background:
+        radial-gradient(circle at 15% 20%, rgba(201,154,61,.10), transparent 25%),
+        radial-gradient(circle at 85% 80%, rgba(116,21,45,.12), transparent 25%),
+        #2c0714;
+      text-align: center;
+    }
+
+    .details-card {
+      max-width: 900px;
+      margin: 45px auto 0;
+      padding: clamp(28px, 5vw, 55px);
+      border: 1px solid rgba(198,154,59,.5);
+      box-shadow: var(--shadow);
+      background: rgba(68,8,25,.82);
+    }
+
+    .muhurtham {
+      font: 600 clamp(38px, 7vw, 68px) var(--serif);
+      color: #efd07b;
+      margin: 18px 0 8px;
+    }
+
+    .event-date {
+      font: 500 24px var(--serif);
+      color: var(--muted);
+    }
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 42px;
+    }
+
+    .count-box {
+      padding: 22px 8px;
+      background: #74152d;
+      color: #fff8e7;
+      border: 1px solid rgba(230,200,117,.5);
+    }
+
+    .count-box span {
+      display: block;
+      font: 600 clamp(30px, 5vw, 48px) var(--serif);
+      color: var(--soft-gold);
+    }
+
+    .count-box small {
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: 9px;
+      opacity: .8;
+    }
+
+    /* ---------- Location ---------- */
+    .location {
+      background: linear-gradient(160deg, #4a0e20, #6f1730);
+      color: #fff8e7;
+      text-align: center;
+    }
+
+    .location h2 { color: #fff8e7; }
+    .location .eyebrow { color: var(--soft-gold); }
+
+    .venue {
+      max-width: 760px;
+      margin: 35px auto 0;
+      padding: 38px 24px;
+      border: 1px solid rgba(230,200,117,.5);
+      background: rgba(59,11,26,.28);
+    }
+
+    .venue-name {
+      font: 600 clamp(36px, 6vw, 58px) var(--serif);
+      color: var(--soft-gold);
+    }
+
+    .venue-address {
+      color: rgba(255,248,231,.78);
+      line-height: 1.8;
+      margin: 12px auto 28px;
+      max-width: 580px;
+    }
+
+    .map-button {
+      display: inline-flex;
+      padding: 13px 25px;
+      border: 1px solid var(--soft-gold);
+      color: #fff8e7;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: 10px;
+      transition: background .3s ease, color .3s ease, transform .3s ease;
+    }
+
+    .map-button:hover {
+      background: var(--soft-gold);
+      color: #f1d79a;
+      transform: translateY(-2px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px 20px;
+      background: var(--deep-maroon);
+      color: rgba(255,248,231,.65);
+      font: 14px var(--serif);
+    }
+
+
+
+
+    /* ---------- Atmospheric background image layers ---------- */
+    .image-backed {
+      background-image:
+        linear-gradient(180deg, rgba(205, 152, 167, 0.9), rgba(32, 4, 13, .96)),
+        var(--section-image, none);
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      isolation: isolate;
+    }
+    .image-backed::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 50% 35%, rgba(174, 35, 67, .18), transparent 42%),
+        linear-gradient(90deg, rgba(35,4,14,.38), rgba(106,13,39,.12), rgba(35,4,14,.38));
+      opacity: .8;
+    }
+    .image-backed > .container { z-index: 2; }
+
+    /* ---------- Adaptive photo frames ---------- */
+    .portrait-frame {
+      aspect-ratio: auto;
+      min-height: 360px;
+    }
+    .portrait-frame img {
+      width: 100%;
+      height: auto;
+      min-height: 360px;
+      max-height: 72vh;
+      object-fit: contain;
+      object-position: center;
+    }
+    .photo-strip { align-items: flex-start; }
+    .engagement-photo {
+      height: auto;
+      aspect-ratio: auto;
+      min-height: 260px;
+    }
+    .engagement-photo img {
+      width: 100%;
+      height: auto;
+      max-height: 70vh;
+      object-fit: contain;
+    }
+
+    /* ---------- Luxury center-split opening ---------- */
+    .opening {
+      background:
+        radial-gradient(circle at 50% 50%, rgba(239,208,123,.10), transparent 18%),
+        radial-gradient(circle at 50% 20%, rgba(116,21,45,.40), transparent 40%),
+        linear-gradient(135deg, #21040e, #4a081c 48%, #21040e);
+    }
+    .split-card {
+      width: min(92vw, 760px);
+      height: min(78vh, 540px);
+      position: relative;
+      cursor: pointer;
+      perspective: 1400px;
+      filter: drop-shadow(0 35px 60px rgba(0,0,0,.42));
+    }
+    .split-card .card-inner {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      border: 1px solid rgba(239,208,123,.62);
+      border-radius: 8px;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(239,208,123,.09), transparent 25%),
+        linear-gradient(145deg, #71132e, #3a0717 55%, #22040e);
+    }
+    .split-card .card-inner::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border: 1px solid rgba(239,208,123,.32);
+      pointer-events: none;
+    }
+    .split-panel {
+      position: absolute;
+      z-index: 4;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(239,208,123,.08), transparent 35%),
+        linear-gradient(145deg, #7a1733, #4b091d);
+      transition: transform 1.25s cubic-bezier(.18,.8,.18,1);
+      backface-visibility: hidden;
+    }
+    .split-panel.left {
+      left: 0;
+      border-right: 1px solid rgba(239,208,123,.32);
+      transform-origin: left center;
+    }
+    .split-panel.right {
+      right: 0;
+      border-left: 1px solid rgba(239,208,123,.32);
+      transform-origin: right center;
+    }
+    .split-card.open .split-panel.left { transform: translateX(-103%); }
+    .split-card.open .split-panel.right { transform: translateX(103%); }
+    .split-panel::after {
+      content: "❋";
+      position: absolute;
+      top: 50%;
+      color: rgba(239,208,123,.48);
+      font-size: 24px;
+    }
+    .split-panel.left::after { right: 18px; transform: translateY(-50%); }
+    .split-panel.right::after { left: 18px; transform: translateY(-50%); }
+    .split-content {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      color: #f4e5c6;
+      padding: 30px;
+    }
+    .split-content-inner { max-width: 560px; }
+    .split-small {
+      color: var(--soft-gold);
+      font-size: 10px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .split-names {
+      font: 600 clamp(45px, 8vw, 84px)/.82 var(--serif);
+      color: #f3d58c;
+    }
+    .split-names span { color: #fff1c8; font-style: italic; }
+    .split-card .opening-hint { margin-top: 32px; }
+    .seal-button {
+      position: absolute;
+      z-index: 10;
+      left: 50%;
+      top: 50%;
+      width: 94px;
+      height: 94px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at 35% 28%, #a52b4e, #6c102c 58%, #400719);
+      border: 2px solid #efd07b;
+      color: #f4d98f;
+      box-shadow: 0 0 0 7px rgba(201,154,61,.12), 0 0 0 11px rgba(201,154,61,.05), 0 18px 35px rgba(0,0,0,.35);
+      transition: transform .55s ease, opacity .35s ease;
+      font-family: "Noto Serif Malayalam", var(--serif);
+      font-size: 39px;
+    }
+    .seal-button::before {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      border: 1px dashed rgba(239,208,123,.6);
+      border-radius: 50%;
+    }
+    .seal-button::after {
+      content: "OPEN";
+      position: absolute;
+      bottom: -27px;
+      font: 600 8px var(--sans);
+      letter-spacing: .22em;
+      color: rgba(244,229,198,.72);
+    }
+    .split-card.open .seal-button {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(.55);
+      pointer-events: none;
+    }
+    @media (max-width: 760px) {
+      .split-card { height: min(78vh, 500px); }
+      .split-names { font-size: clamp(40px, 12vw, 64px); }
+      .seal-button { width: 82px; height: 82px; font-size: 33px; }
+      .portrait-frame { min-height: 0; }
+      .portrait-frame img { min-height: 0; max-height: none; }
+      .engagement-photo { min-height: 0; }
+      .engagement-photo img { max-height: none; }
+      .image-backed { background-attachment: scroll; }
+    }
+
+    /* ---------- Fixed sacred image ornaments ---------- */
+    .fixed-ganesha,
+    .fixed-shiva-parvati {
+      position: fixed;
+      z-index: 820;
+      pointer-events: none;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 18px rgba(0,0,0,.25));
+    }
+
+    .fixed-ganesha {
+      top: 30px;
+      left: 18px;
+      width: clamp(62px, 9vw, 112px);
+      height: clamp(62px, 9vw, 112px);
+    }
+
+    .fixed-shiva-parvati {
+      right: 10px;
+      bottom: 10px;
+      width: clamp(88px, 13vw, 155px);
+      height: clamp(88px, 13vw, 155px);
+      -webkit-mask-image: radial-gradient(circle, black 50%, transparent 10%);
+    }
+
+    /* ---------- Engagement highlights ---------- */
+    .engagement {
+      min-height: auto;
+      padding-top: 105px;
+      padding-bottom: 105px;
+      background:
+        radial-gradient(circle at 20% 25%, rgba(201,154,61,.10), transparent 25%),
+        linear-gradient(180deg, #300716, #21050d);
+    }
+
+    .engagement-heading {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 38px;
+    }
+
+    .engagement-heading p {
+      color: rgba(244,229,198,.72);
+      max-width: 580px;
+      margin: 18px auto 0;
+    }
+
+    .photo-strip {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 12px 4px 24px;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(239,208,123,.65) rgba(255,255,255,.08);
+    }
+
+    .photo-strip::-webkit-scrollbar { height: 5px; }
+    .photo-strip::-webkit-scrollbar-track {
+      background: rgba(255,255,255,.07);
+      border-radius: 99px;
+    }
+    .photo-strip::-webkit-scrollbar-thumb {
+      background: rgba(239,208,123,.65);
+      border-radius: 99px;
+    }
+
+    .engagement-photo {
+      flex: 0 0 calc((100% - 36px) / 3);
+      min-width: 0;
+      aspect-ratio: 4 / 5;
+      scroll-snap-align: start;
+      position: relative;
+      padding: 8px;
+      background: #4a0a1c;
+      border: 1px solid rgba(239,208,123,.5);
+      box-shadow: 0 18px 40px rgba(0,0,0,.22);
+      transition: transform .35s ease, box-shadow .35s ease;
+    }
+
+    .engagement-photo:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 25px 55px rgba(0,0,0,.3);
+    }
+
+    .engagement-photo img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      background: linear-gradient(135deg, #5c0e25, #2d0714);
+    }
+
+    .engagement-photo::after {
+      content: "✦";
+      position: absolute;
+      right: 14px;
+      bottom: 10px;
+      color: var(--soft-gold);
+      font-size: 13px;
+      opacity: .75;
+    }
+
+    .swipe-hint {
+      text-align: center;
+      color: rgba(244,229,198,.55);
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    @media (max-width: 760px) {
+      .engagement-photo {
+        flex-basis: calc((100% - 20px) / 1.55);
+      }
+
+      .fixed-ganesha {
+        top: 8px;
+        left: 8px;
+        width: 58px;
+        height: 58px;
+      }
+
+      .fixed-shiva-parvati {
+        right: 4px;
+        bottom: 4px;
+        width: 78px;
+        height: 78px;
+      }
+    }
+
+    /* ---------- Sacred line-art motifs ---------- */
+    .sacred-art {
+      position: absolute;
+      width: clamp(115px, 17vw, 210px);
+      height: auto;
+      opacity: .15;
+      color: var(--soft-gold);
+      pointer-events: none;
+      filter: drop-shadow(0 0 12px rgba(239,208,123,.10));
+    }
+    .sacred-art.ganesha { top: 7%; left: 3%; }
+    .sacred-art.shiva-parvati { right: 2%; bottom: 6%; }
+    .sacred-art.corner-left { left: 2%; bottom: 8%; width: 110px; opacity: .11; }
+    .sacred-art.corner-right { right: 2%; top: 9%; width: 110px; opacity: .11; }
+    .sacred-art path, .sacred-art circle, .sacred-art ellipse,
+    .sacred-art line, .sacred-art polyline {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .sacred-art .fill {
+      fill: currentColor;
+      stroke: none;
+    }
+
+    /* ---------- Falling flower petals ---------- */
+    .petals {
+      position: fixed;
+      inset: 0;
+      z-index: 900;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .petal {
+      position: absolute;
+      top: -45px;
+      width: 12px;
+      height: 8px;
+      border-radius: 80% 20% 80% 20%;
+      background: linear-gradient(135deg, #f2d58b, #b77b2d);
+      box-shadow: 0 0 8px rgba(239,208,123,.25);
+      opacity: 0;
+      animation: petalFall linear forwards;
+    }
+    .petal::after {
+      content: "";
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      left: 3px;
+      top: 2px;
+      border-radius: 50%;
+      background: rgba(255,240,190,.7);
+    }
+
+    @keyframes petalFall {
+      0% {
+        opacity: 0;
+        transform: translate3d(0,-20px,0) rotate(0deg) scale(.7);
+      }
+      8% { opacity: .95; }
+      100% {
+        opacity: 0;
+        transform: translate3d(var(--drift), 112vh, 0) rotate(var(--spin)) scale(1);
+      }
+    }
+
+    .hero .sacred-om {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 72px;
+      height: 72px;
+      margin: 8px auto 3px;
+      border: 1px solid rgba(239,208,123,.65);
+      border-radius: 50%;
+      color: var(--soft-gold);
+      font: 500 36px/1 "Noto Serif Malayalam", serif;
+      box-shadow: 0 0 35px rgba(239,208,123,.10), inset 0 0 20px rgba(239,208,123,.05);
+    }
+
+    .hero .sacred-om::before,
+    .hero .sacred-om::after {
+      content: "✦";
+      position: absolute;
+      font-size: 9px;
+      opacity: .7;
+    }
+    .hero .sacred-om::before { transform: translate(-50px, -30px); }
+    .hero .sacred-om::after { transform: translate(50px, 30px); }
+
+    .music-note {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 850;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(239,208,123,.55);
+      border-radius: 50%;
+      background: rgba(44,7,20,.82);
+      color: var(--soft-gold);
+      display: grid;
+      place-items: center;
+      font-size: 15px;
+      opacity: 0;
+      transform: scale(.8);
+      transition: opacity .5s ease, transform .5s ease;
+      backdrop-filter: blur(8px);
+    }
+    .music-note.visible { opacity: .85; transform: scale(1); }
+
+    /* ---------- Reveal animations ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(45px);
+      transition: opacity 1s ease, transform 1s cubic-bezier(.2,.75,.2,1);
+    }
+    .reveal.from-left { transform: translateX(-55px); }
+    .reveal.from-right { transform: translateX(55px); }
+    .reveal.visible {
+      opacity: 1;
+      transform: translate(0,0);
+    }
+
+    .delay-1 { transition-delay: .12s; }
+    .delay-2 { transition-delay: .24s; }
+    .delay-3 { transition-delay: .36s; }
+
+    @keyframes pulse {
+      0%, 100% { opacity: .45; transform: translateY(0); }
+      50% { opacity: 1; transform: translateY(-4px); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0); }
+      50% { transform: translateY(-15px) rotate(12deg); }
+    }
+    @keyframes scrollLine {
+      0% { transform: scaleY(.35); transform-origin: top; opacity: .3; }
+      50% { transform: scaleY(1); opacity: 1; }
+      100% { transform: scaleY(.35); transform-origin: bottom; opacity: .3; }
+    }
+
+    @media (max-width: 760px) {
+      .section { padding: 80px 18px; }
+      .section::before { inset: 12px; }
+      .hero-card { padding: 65px 18px; }
+      .person-grid,
+      .person-section.reverse .person-grid {
+        grid-template-columns: 1fr;
+      }
+      .person-section.reverse .portrait-wrap,
+      .person-section.reverse .person-copy {
+        order: initial;
+      }
+      .portrait-wrap { max-width: 430px; width: 100%; margin: auto; }
+      .countdown { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+
+    /* Adaptive bride/groom image safety */
+    .portrait-frame {
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    .portrait-frame img {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* ---------- Engagement gallery containment fix ---------- */
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    .engagement {
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    .engagement .container {
+      width: min(1120px, calc(100% - 36px));
+      max-width: 1120px;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .photo-strip {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      overflow-y: hidden;
+      overscroll-behavior-x: contain;
+      touch-action: pan-x;
+      contain: inline-size;
+    }
+
+    /* Three complete photo cards visible at once on desktop.
+       The image itself adapts to its natural ratio inside the card. */
+    .engagement-photo {
+      flex: 0 0 calc((100% - 36px) / 3);
+      width: calc((100% - 36px) / 3);
+      min-width: 0;
+      max-width: calc((100% - 36px) / 3);
+      box-sizing: border-box;
+      aspect-ratio: 4 / 5;
+      height: auto;
+      overflow: hidden;
+    }
+
+    .engagement-photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: none;
+      object-fit: contain;
+      object-position: center;
+    }
+
+    @media (max-width: 760px) {
+      .engagement .container {
+        width: calc(100% - 28px);
+      }
+
+      .engagement-photo {
+        flex: 0 0 72%;
+        width: 72%;
+        max-width: 72%;
+        aspect-ratio: 4 / 5;
+      }
+    }
+
+
+    /* ---------- Luxury music control ---------- */
+    .music-control {
+      position: fixed;
+      right: 22px;
+      top: 22px;
+      z-index: 900;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(239,208,123,.58);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(54,5,20,.78);
+      color: #efd07b;
+      box-shadow: 0 10px 28px rgba(0,0,0,.28);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      opacity: 0;
+      transform: scale(.8);
+      pointer-events: none;
+      transition: opacity .35s ease, transform .35s ease;
+      cursor: pointer;
+    }
+    .music-control.visible {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+    }
+    .music-control.playing {
+      animation: musicPulse 1.8s ease-in-out infinite;
+    }
+    .music-control .music-icon {
+      font-size: 17px;
+      line-height: 1;
+    }
+    .music-control .music-bars {
+      position: absolute;
+      inset: -4px;
+      border: 1px solid rgba(239,208,123,.22);
+      border-radius: 50%;
+      opacity: 0;
+    }
+    .music-control.playing .music-bars {
+      opacity: 1;
+      animation: musicRing 1.8s ease-out infinite;
+    }
+    @keyframes musicPulse {
+      0%, 100% { box-shadow: 0 10px 28px rgba(0,0,0,.28), 0 0 0 rgba(239,208,123,0); }
+      50% { box-shadow: 0 10px 28px rgba(0,0,0,.28), 0 0 24px rgba(239,208,123,.16); }
+    }
+    @keyframes musicRing {
+      0% { transform: scale(.9); opacity: .6; }
+      100% { transform: scale(1.35); opacity: 0; }
+    }
+    @media (max-width: 760px) {
+      .music-control {
+        right: 14px;
+        top: 14px;
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+</style>
+</head>
+
+<body class="locked">
+  <!-- Fixed sacred images: replace these files with your own images -->
+  <img
+    class="fixed-ganesha"
+    src="images/ganesha-fixed.svg"
+    alt=""
+    aria-hidden="true"
+    onerror="this.style.display='none';"
+  />
+
+  <img
+    class="fixed-shiva-parvati"
+    src="images/shiva-parvati-fixed.png"
+    alt=""
+    aria-hidden="true"
+    onerror="this.style.display='none';"
+  />
+
+
+  <!-- Decorative flower shower -->
+  <div class="petals" id="petals" aria-hidden="true"></div>
+
+  <!--
+    OPTIONAL MUSIC:
+    Put your legally obtained/licensed instrumental audio file at:
+    audio/sita-kalyanam-instrumental.mp3
+    The browser will start it after the user opens the card.
+  -->
+  <audio id="weddingMusic" preload="auto" loop playsinline>
+    <source src="audio/sita-kalyanam-instrumental.mp3" type="audio/mpeg">
+  </audio>
+  <div class="music-note" id="musicNote" aria-hidden="true">♫</div>
+
+<button class="music-control" id="musicControl" type="button"
+    aria-label="Pause wedding music" title="Pause wedding music">
+    <span class="music-bars"></span>
+    <span class="music-icon" aria-hidden="true">♪</span>
+  </button>
+
+  <!-- =========================
+       OPENING CARD
+       ========================= -->
+  <div class="opening" id="opening">
+    <div class="split-card" id="splitCard" role="button" tabindex="0" aria-label="Open wedding invitation">
+      <div class="card-inner">
+        <div class="split-content">
+          <div class="split-content-inner">
+            <div class="split-small">You are cordially invited</div>
+            <div class="split-names">
+              Krishnapriya<br><span>&</span><br>Nithin
+            </div>
+          </div>
+        </div>
+        <div class="split-panel left"></div>
+        <div class="split-panel right"></div>
+        <div class="seal-button" aria-hidden="true">ॐ</div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- =========================
+         WELCOME
+         ========================= -->
+    <section class="section hero image-backed" style="--section-image: url('images/background-landing.jpg');">
+      <div class="container">
+        <!-- Elegant Ganesha outline -->
+        <svg class="sacred-art ganesha" viewBox="0 0 200 240" aria-hidden="true">
+          <path d="M100 38c-28-2-51 17-51 44 0 16 8 28 22 35-12 14-18 31-18 52 0 31 20 49 47 49s47-18 47-49c0-21-6-38-18-52 14-7 22-19 22-35 0-27-23-46-51-44Z"/>
+          <path d="M72 78c-11 6-18 16-18 27 0 13 9 21 21 22M128 78c11 6 18 16 18 27 0 13-9 21-21 22"/>
+          <path d="M92 93c-7 13-7 30 8 40 15-10 15-27 8-40"/>
+          <path d="M99 133c-4 17-1 28 9 36"/>
+          <path d="M72 168c9 7 19 11 28 11M128 168c-9 7-19 11-28 11"/>
+          <circle cx="84" cy="112" r="2.5" class="fill"/><circle cx="116" cy="112" r="2.5" class="fill"/>
+          <path d="M64 52c7-20 24-31 36-31 12 0 29 11 36 31"/>
+        </svg>
+
+        <div class="hero-card reveal">
+          <div class="eyebrow">॥ शुभ विवाह ॥</div>
+          <div class="sacred-om" aria-label="Om">ॐ</div>
+          <div class="motif"><span>❋</span></div>
+          <p class="reveal delay-1">We cordially invite you to the wedding ceremony of our daughter</p>
+
+          <h1 class="hero-names reveal delay-2">
+            Krishnapriya <span class="amp">&</span> Nithin
+          </h1>
+
+          <!-- Replace the date below -->
+          <div class="hero-date reveal delay-3">Together with our families, we invite you to celebrate our wedding</div>
+          <div class="motif reveal delay-3"><span>✦</span></div>
+          <p class="hero-date reveal delay-3">Wedding Date: <strong>26 • 10 • 2026</strong></p>
+        </div>
+      </div>
+      <div class="scroll-note">Scroll to continue</div>
+    </section>
+
+    <!-- =========================
+         BRIDE
+         ========================= -->
+    <section class="section person-section">
+      <div class="container person-grid">
+        <!-- Shiva & Parvati inspired minimalist line-art -->
+        <svg class="sacred-art shiva-parvati" viewBox="0 0 280 260" aria-hidden="true">
+          <path d="M84 222c-18-36-15-78 3-112 11-21 27-39 43-53"/>
+          <path d="M155 222c19-35 18-73 2-106-10-21-24-40-42-59"/>
+          <circle cx="115" cy="79" r="30"/><circle cx="154" cy="83" r="29"/>
+          <path d="M94 71c7-17 20-26 36-28M139 62c11-13 24-18 39-13"/>
+          <path d="M105 96c8 7 19 10 29 9M145 101c8 3 16 2 24-3"/>
+          <path d="M116 111c-6 20-7 42-1 62M156 113c5 19 6 40 1 59"/>
+          <path d="M85 133c-24 17-39 42-45 69M184 136c25 18 39 42 44 66"/>
+          <path d="M75 204c15 9 28 14 42 15M174 219c14-2 27-7 41-16"/>
+          <path d="M119 49c-9-12-6-25 3-34 7 12 16 19 28 24"/>
+          <path d="M128 32c15-4 27 0 36 8"/>
+          <path d="M98 53c-8-9-17-13-28-12"/>
+          <path d="M196 75c12 11 19 25 20 43"/>
+          <path d="M205 72c14-1 24 4 32 13"/>
+          <path d="M198 98c-5 13-11 23-21 31"/>
+          <path d="M44 237h195"/>
+        </svg>
+
+
+        <div class="portrait-wrap reveal from-left">
+          <div class="portrait-frame">
+            <img src="images/bride.jpg" alt="Bride — Krishnapriya"
+                 onerror="this.style.objectFit='contain'; this.alt='Replace images/bride.jpg with the bride photo';">
+          </div>
+          <div class="portrait-caption">
+            <div class="eyebrow" style="color:#e6c875;">The Bride</div>
+            <h3>Krishnapriya</h3>
+          </div>
+        </div>
+
+        <div class="person-copy reveal from-right">
+          <div class="eyebrow">A daughter, a dreamer, a bride</div>
+          <h2>Krishnapriya</h2>
+          <div class="motif" style="justify-content:flex-start;"><span>❋</span></div>
+
+          <p>
+            With hearts full of joy, she invites you to witness the beginning
+            of a beautiful new chapter in her life.
+          </p>
+
+          <!-- Replace parent names -->
+          <div class="parents">
+            <span>Daughter of</span>
+            <strong>Mrs. Sushama Kumari & Mr. Sreekrishnakumar C V</strong>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================
+         GROOM
+         ========================= -->
+    <section class="section person-section reverse">
+      <div class="container person-grid">
+
+        <div class="portrait-wrap reveal from-right">
+          <div class="portrait-frame">
+            <img src="images/groom.jpg" alt="Groom — Nithin"
+                 onerror="this.style.objectFit='contain'; this.alt='Replace images/groom.jpg with the groom photo';">
+          </div>
+          <div class="portrait-caption">
+            <div class="eyebrow" style="color:#e6c875;">The Groom</div>
+            <h3>Nithin</h3>
+          </div>
+        </div>
+
+        <div class="person-copy reveal from-left">
+          <div class="eyebrow">A son, a dreamer, a groom</div>
+          <h2>Nithin</h2>
+          <div class="motif" style="justify-content:flex-start;"><span>❋</span></div>
+
+          <p>
+            With blessings, laughter and love, he begins this beautiful
+            journey hand in hand with his beloved.
+          </p>
+
+          <!-- Replace parent names -->
+          <div class="parents">
+            <span>Son of</span>
+            <strong>Mrs. Sunita Panicker & Mr. M G Jayan </strong>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================
+         ENGAGEMENT PHOTO HIGHLIGHTS
+         ========================= -->
+    <section class="section engagement">
+      <div class="container">
+
+        <div class="engagement-heading reveal">
+          <div class="eyebrow">A few moments of us</div>
+          <h2>Our Engagement</h2>
+          <div class="motif"><span>❋</span></div>
+          <p>
+            A little collection of memories from the beginning of our
+            journey together.
+          </p>
+        </div>
+
+        <!--
+          12 photo spaces are provided.
+          Replace images/engagement-01.jpg through engagement-12.jpg
+          with your actual photographs.
+        -->
+        <div class="photo-strip reveal delay-1" aria-label="Engagement photo highlights" tabindex="0">
+          <div class="engagement-photo">
+            <img
+              src="images/engagement-01.jpg"
+              alt="Engagement memory 1"
+              onerror="this.style.objectFit='contain'; this.alt='Add images/engagement-01.jpg';"
+            />
+          </div>
+          <div class="engagement-photo">
+            <img
+              src="images/engagement-02.jpg"
+              alt="Engagement memory 2"
+              onerror="this.style.objectFit='contain'; this.alt='Add images/engagement-02.jpg';"
+            />
+          </div>
+          <div class="engagement-photo">
+            <img
+              src="images/engagement-03.jpg"
+              alt="Engagement memory 3"
+              onerror="this.style.objectFit='contain'; this.alt='Add images/engagement-03.jpg';"
+            />
+          </div>
+          <div class="engagement-photo">
+            <img
+              src="images/engagement-04.jpg"
+              alt="Engagement memory 4"
+              onerror="this.style.objectFit='contain'; this.alt='Add images/engagement-04.jpg';"
+            />
+          </div>
+          <div class="engagement-photo">
+            <img
+              src="images/engagement-05.jpg"
+              alt="Engagement memory 5"
+              onerror="this.style.objectFit='contain'; this.alt='Add images/engagement-05.jpg';"
+            />
+          </div>
+          <div class="engagement-photo">
+            <img
+              src="images/engagement-06.jpg"
+              alt="Engagement memory 6"
+              onerror="this.style.objectFit='contain'; this.alt='Add images/engagement-06.jpg';"
+            />
+          </div>
+          <div class="engagement-photo">
+            <img
+              src="images/engagement-07.jpg"
+              alt="Engagement memory 7"
+              onerror="this.style.objectFit='contain'; this.alt='Add images/engagement-07.jpg';"
+            />
+          </div>
+          <div class="engagement-photo">
+            <img
+              src="images/engagement-08.jpg"
+              alt="Engagement memory 8"
+              onerror="this.style.objectFit='contain'; this.alt='Add images/engagement-08.jpg';"
+            />
+          </div>
+          <div class="engagement-photo">
+            <img
+              src="images/engagement-09.jpg"
+              alt="Engagement memory 9"
+              onerror="this.style.objectFit='contain'; this.alt='Add images/engagement-09.jpg';"
+            />
+          </div>
+          <div class="engagement-photo">
+            <img
+              src="images/engagement-10.jpg"
+              alt="Engagement memory 10"
+              onerror="this.style.objectFit='contain'; this.alt='Add images/engagement-10.jpg';"
+            />
+          </div>
+          <div class="engagement-photo">
+            <img
+              src="images/engagement-11.jpg"
+              alt="Engagement memory 11"
+              onerror="this.style.objectFit='contain'; this.alt='Add images/engagement-11.jpg';"
+            />
+          </div>
+          <div class="engagement-photo">
+            <img
+              src="images/engagement-12.jpg"
+              alt="Engagement memory 12"
+              onerror="this.style.objectFit='contain'; this.alt='Add images/engagement-12.jpg';"
+            />
+          </div>
+        </div>
+
+        <div class="swipe-hint">
+          ← Swipe to discover more memories →
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================
+         MUHURTHAM + COUNTDOWN
+         ========================= -->
+    <section class="section details image-backed" style="--section-image: url('images/background-muhurtham.jpg');">
+      <div class="container">
+        <!-- Elegant Ganesha outline -->
+        <svg class="sacred-art corner-right" viewBox="0 0 200 240" aria-hidden="true">
+          <path d="M100 38c-28-2-51 17-51 44 0 16 8 28 22 35-12 14-18 31-18 52 0 31 20 49 47 49s47-18 47-49c0-21-6-38-18-52 14-7 22-19 22-35 0-27-23-46-51-44Z"/>
+          <path d="M72 78c-11 6-18 16-18 27 0 13 9 21 21 22M128 78c11 6 18 16 18 27 0 13-9 21-21 22"/>
+          <path d="M92 93c-7 13-7 30 8 40 15-10 15-27 8-40"/>
+          <path d="M99 133c-4 17-1 28 9 36"/>
+          <path d="M72 168c9 7 19 11 28 11M128 168c-9 7-19 11-28 11"/>
+          <circle cx="84" cy="112" r="2.5" class="fill"/><circle cx="116" cy="112" r="2.5" class="fill"/>
+          <path d="M64 52c7-20 24-31 36-31 12 0 29 11 36 31"/>
+        </svg>
+
+        <div class="eyebrow reveal">The auspicious moment</div>
+        <h2 class="reveal delay-1">Join us in celebration</h2>
+
+        <div class="details-card reveal delay-2">
+          <div class="eyebrow">Muhūrtham</div>
+
+          <!-- Replace date/time -->
+          <div class="muhurtham">DD • MM • YYYY</div>
+          <div class="event-date">at 00:00 AM / PM</div>
+
+          <div class="motif"><span>❋</span></div>
+
+          <div class="eyebrow">Counting every moment</div>
+          <div class="countdown" aria-label="Countdown to wedding">
+            <div class="count-box"><span id="days">00</span><small>Days</small></div>
+            <div class="count-box"><span id="hours">00</span><small>Hours</small></div>
+            <div class="count-box"><span id="minutes">00</span><small>Minutes</small></div>
+            <div class="count-box"><span id="seconds">00</span><small>Seconds</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         LOCATION
+         ========================= -->
+    <section class="section location image-backed" style="--section-image: url('images/background-location.jpg');">
+      <div class="container">
+        <div class="eyebrow reveal">Where we say “I do”</div>
+        <h2 class="reveal delay-1">The Celebration</h2>
+
+        <div class="venue reveal delay-2">
+          <!-- Replace venue details -->
+          <div class="venue-name">[Wedding Venue Name]</div>
+          <div class="venue-address">
+            [Venue Address]<br>
+            [City, State, PIN]
+          </div>
+
+          <!-- Replace the URL with your Google Maps location -->
+          <a class="map-button"
+             href="https://maps.google.com/"
+             target="_blank"
+             rel="noopener">
+            Open in Google Maps
+          </a>
+        </div>
+
+        <div class="motif reveal delay-3"><span>ॐ</span></div>
+        <p class="reveal delay-3">
+          Your presence is the most precious gift we could receive.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    With love & gratitude · Krishnapriya & Nithin
+  </footer>
+
+  <script>
+    /* ============================================================
+       EASY CUSTOMIZATION
+       Change these values first.
+       ============================================================ */
+
+    // Use local time in the format: "YYYY-MM-DDTHH:MM:SS+05:30"
+    // Example: "2026-12-20T10:30:00+05:30"
+    const weddingDate = new Date("YYYY-MM-DDTHH:MM:SS+05:30");
+
+    /* ---------- Opening animation ---------- */
+    const opening = document.getElementById("opening");
+    const splitCard = document.getElementById("splitCard");
+
+    function createPetalShower() {
+      const container = document.getElementById("petals");
+      const count = window.innerWidth < 600 ? 55 : 85;
+
+      for (let i = 0; i < count; i++) {
+        const petal = document.createElement("span");
+        petal.className = "petal";
+        petal.style.left = `${Math.random() * 100}%`;
+        petal.style.animationDuration = `${4 + Math.random() * 5}s`;
+        petal.style.animationDelay = `${Math.random() * 1.8}s`;
+        petal.style.setProperty("--drift", `${-90 + Math.random() * 180}px`);
+        petal.style.setProperty("--spin", `${180 + Math.random() * 720}deg`);
+        petal.style.transform = `scale(${0.55 + Math.random() * .8})`;
+        container.appendChild(petal);
+      }
+
+      setTimeout(() => {
+        container.innerHTML = "";
+      }, 9000);
+    }
+
+    function startWeddingMusic() {
+      const music = document.getElementById("weddingMusic");
+      const musicNote = document.getElementById("musicNote");
+
+      music.volume = 0.35;
+
+      // Browsers permit this because it is called from the user's click.
+      music.play().then(() => {
+        musicNote.classList.add("visible");
+      }).catch(() => {
+        // If the audio file has not been added yet, the invitation still works.
+      });
+    }
+
+    const music = document.getElementById("weddingMusic");
+    const musicControl = document.getElementById("musicControl");
+
+    function updateMusicControl() {
+      if (!music || !musicControl) return;
+      const playing = !music.paused && !music.ended && music.currentTime > 0;
+      musicControl.classList.toggle("playing", playing);
+      musicControl.setAttribute("aria-label", playing ? "Pause wedding music" : "Play wedding music");
+      musicControl.title = playing ? "Pause wedding music" : "Play wedding music";
+    }
+
+    async function startWeddingMusic() {
+      if (!music) return false;
+      music.volume = 0.42;
+      try {
+        music.currentTime = 0;
+        await music.play();
+        musicControl?.classList.add("visible");
+        updateMusicControl();
+        return true;
+      } catch (error) {
+        console.warn("Wedding music could not start:", error);
+        musicControl?.classList.add("visible");
+        updateMusicControl();
+        return false;
+      }
+    }
+
+    async function toggleWeddingMusic() {
+      if (!music) return;
+      try {
+        if (music.paused) await music.play();
+        else music.pause();
+        updateMusicControl();
+      } catch (error) {
+        console.warn("Wedding music could not play:", error);
+      }
+    }
+
+    musicControl?.addEventListener("click", toggleWeddingMusic);
+    music?.addEventListener("play", updateMusicControl);
+    music?.addEventListener("pause", updateMusicControl);
+
+    function openInvitation() {
+      splitCard.classList.add("open");
+      createPetalShower();
+      startWeddingMusic();
+
+      setTimeout(() => {
+        opening.classList.add("hide");
+        document.body.classList.remove("locked");
+      }, 1250);
+    }
+
+    splitCard.addEventListener("click", openInvitation);
+    splitCard.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openInvitation();
+      }
+    });
+
+    /* ---------- Scroll reveal ---------- */
+    const revealItems = document.querySelectorAll(".reveal");
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    revealItems.forEach((item) => revealObserver.observe(item));
+
+    /* ---------- Countdown ---------- */
+    const countdownEls = {
+      days: document.getElementById("days"),
+      hours: document.getElementById("hours"),
+      minutes: document.getElementById("minutes"),
+      seconds: document.getElementById("seconds")
+    };
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = weddingDate.getTime() - now.getTime();
+
+      if (Number.isNaN(weddingDate.getTime())) {
+        Object.values(countdownEls).forEach(el => el.textContent = "--");
+        return;
+      }
+
+      if (diff <= 0) {
+        Object.values(countdownEls).forEach(el => el.textContent = "00");
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      countdownEls.days.textContent = String(days).padStart(2, "0");
+      countdownEls.hours.textContent = String(hours).padStart(2, "0");
+      countdownEls.minutes.textContent = String(minutes).padStart(2, "0");
+      countdownEls.seconds.textContent = String(seconds).padStart(2, "0");
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+
+</body>
+</html>
