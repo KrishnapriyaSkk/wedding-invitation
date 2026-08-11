@@ -1140,6 +1140,112 @@
       }
     }
 
+
+
+/* ============================================================
+   MOBILE LUXURY REFINEMENT
+   CSS-only responsive improvements. Existing JS/functionality intact.
+   ============================================================ */
+@media (max-width:760px){
+  :root{--mobile-gutter:18px}
+  body{font-size:14px;-webkit-text-size-adjust:100%}
+  .section{min-height:auto;padding:72px var(--mobile-gutter) 78px}
+  .section::before{inset:10px;border-radius:20px}
+  .container{width:100%;min-width:0}
+  .sacred-art{width:105px;opacity:.09}
+  .sacred-art.ganesha{top:5%;left:-10px}
+  .sacred-art.shiva-parvati{right:-18px;bottom:4%}
+
+  .opening{padding:16px}
+  .split-card{width:min(92vw,430px);height:min(74svh,560px)}
+  .split-content{padding:24px 20px}
+  .split-small{font-size:8px;letter-spacing:.22em}
+  .split-names{font-size:clamp(40px,13vw,62px);line-height:.86}
+  .split-card .opening-hint{margin-top:24px;font-size:9px;letter-spacing:.13em}
+  .seal-button{width:78px;height:78px;font-size:32px}
+
+  .hero{min-height:100svh;padding-top:70px;padding-bottom:86px}
+  .hero-card{width:100%;padding:52px 20px 58px;border-radius:14px}
+  .hero .sacred-om{width:60px;height:60px;font-size:30px;margin-top:4px}
+  .hero-card p{max-width:290px;margin-left:auto;margin-right:auto;line-height:1.7}
+  .hero-names{font-size:clamp(48px,15vw,72px);line-height:.82;margin:22px 0}
+  .hero-date{font-size:18px}
+  .motif{margin:13px 0 20px}
+  .motif::before,.motif::after{width:42px}
+  .scroll-note{bottom:20px;font-size:8px}
+
+  .person-section{padding-top:78px;padding-bottom:82px}
+  .person-grid,.person-section.reverse .person-grid{
+    display:flex;flex-direction:column;gap:34px;align-items:stretch
+  }
+  .person-section.reverse .portrait-wrap,
+  .person-section.reverse .person-copy{order:initial}
+  .portrait-wrap{width:min(100%,340px);margin:0 auto}
+  .portrait-frame{padding:8px;transform:rotate(-.7deg)}
+  .person-section.reverse .portrait-frame{transform:rotate(.7deg)}
+  .portrait-caption{margin:-25px 14px 0;padding:14px}
+  .portrait-caption h3{font-size:29px}
+  .person-copy{text-align:center;padding:0 4px}
+  .person-copy h2{font-size:clamp(42px,13vw,60px)}
+  .person-copy .motif{justify-content:center!important}
+  .person-copy p{max-width:330px;margin:0 auto;line-height:1.75}
+  .parents{margin:24px auto 0;padding-top:18px;max-width:340px}
+  .parents strong{font-size:20px;line-height:1.25}
+
+  .engagement{padding-top:76px;padding-bottom:74px}
+  .engagement-heading{margin-bottom:26px;padding:0 4px}
+  .engagement-heading h2{font-size:clamp(42px,13vw,58px)}
+  .engagement-heading p{font-size:13px;line-height:1.7;max-width:300px}
+  .photo-strip{
+    gap:14px;padding:8px 2px 18px;margin:0 -2px;
+    scroll-padding-left:2px;scrollbar-width:none
+  }
+  .photo-strip::-webkit-scrollbar{display:none}
+  .engagement-photo{
+    flex:0 0 78%;width:78%;max-width:78%;
+    aspect-ratio:4/5;padding:6px;border-radius:3px;
+    scroll-snap-align:center
+  }
+  .engagement-photo::after{right:11px;bottom:8px;font-size:11px}
+  .swipe-hint{margin-top:5px;font-size:8px;letter-spacing:.13em}
+
+  .details{padding-top:76px;padding-bottom:82px}
+  .details h2{max-width:330px;margin:8px auto 0;font-size:clamp(42px,12.5vw,58px)}
+  .details-card{width:100%;margin-top:30px;padding:28px 16px 30px;border-radius:6px}
+  .muhurtham{font-size:clamp(34px,10vw,50px)}
+  .event-date{font-size:20px}
+  .countdown{gap:9px;margin-top:28px}
+  .count-box{padding:15px 5px 13px;border-radius:2px}
+  .count-box span{font-size:clamp(27px,9vw,40px)}
+  .count-box small{font-size:7px;letter-spacing:.12em}
+
+  .location{padding-top:76px;padding-bottom:80px}
+  .location h2{font-size:clamp(43px,13vw,60px);margin-top:8px}
+  .venue{width:100%;margin-top:28px;padding:28px 18px 30px}
+  .venue-name{font-size:clamp(30px,9vw,45px);line-height:1.02}
+  .venue-address{font-size:13px;line-height:1.7;margin-bottom:24px}
+  .map-button{width:100%;justify-content:center;min-height:48px;padding:14px 16px;font-size:9px}
+  footer{padding:28px 18px;font-size:13px}
+
+  .fixed-ganesha{top:7px;left:7px;width:48px;height:48px;opacity:.88}
+  .fixed-shiva-parvati{right:3px;bottom:3px;width:68px;height:68px;opacity:.82}
+  .music-control{right:12px;top:12px;width:38px;height:38px}
+  .music-control .music-icon{font-size:15px}
+  .music-note{right:12px;bottom:12px;width:38px;height:38px}
+}
+@media (max-width:390px){
+  .section{padding-left:15px;padding-right:15px}
+  .hero-card{padding-left:16px;padding-right:16px}
+  .hero-names{font-size:45px}
+  .person-grid,.person-section.reverse .person-grid{gap:28px}
+  .portrait-wrap{width:min(100%,310px)}
+  .engagement-photo{flex-basis:84%;width:84%;max-width:84%}
+  .countdown{gap:7px}
+  .count-box{padding-left:3px;padding-right:3px}
+  .count-box span{font-size:28px}
+  .count-box small{font-size:6.5px}
+}
+
 </style>
 </head>
 
