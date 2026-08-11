@@ -1246,6 +1246,49 @@
   .count-box small{font-size:6.5px}
 }
 
+
+
+/* ============================================================
+   MOBILE-SPECIFIC BACKGROUND ART
+   Desktop background images remain completely unchanged.
+   Add the three mobile images to /images using the filenames
+   below. Mobile uses scroll rather than fixed attachment for
+   reliable iOS/Android rendering.
+   ============================================================ */
+@media (max-width: 760px) {
+  /* Each image-backed section can provide --mobile-section-image inline.
+     If omitted, the existing desktop --section-image is used as fallback. */
+  .image-backed {
+    background-image:
+      linear-gradient(
+        180deg,
+        rgba(67, 6, 23, 0.68),
+        rgba(37, 4, 15, 0.84)
+      ),
+      var(--mobile-section-image, var(--section-image, none));
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+  }
+
+  .image-backed::after {
+    background:
+      radial-gradient(
+        circle at 50% 34%,
+        rgba(180, 38, 70, 0.14),
+        transparent 48%
+      ),
+      linear-gradient(
+        90deg,
+        rgba(35, 4, 14, 0.18),
+        rgba(106, 13, 39, 0.04),
+        rgba(35, 4, 14, 0.18)
+      );
+    opacity: .72;
+  }
+}
+
 </style>
 </head>
 
@@ -1314,7 +1357,7 @@
     <!-- =========================
          WELCOME
          ========================= -->
-    <section class="section hero image-backed" style="--section-image: url('images/background-landing.jpg');">
+    <section class="section hero image-backed" style="--section-image: url('images/background-landing.jpg'); --mobile-section-image: url('images/engagement-12.jpg');">
       <div class="container">
         <!-- Elegant Ganesha outline -->
         <svg class="sacred-art ganesha" viewBox="0 0 200 240" aria-hidden="true">
@@ -1557,7 +1600,7 @@
     <!-- =========================
          MUHURTHAM + COUNTDOWN
          ========================= -->
-    <section class="section details image-backed" style="--section-image: url('images/background-muhurtham.jpg');">
+    <section class="section details image-backed" style="--section-image: url('images/background-muhurtham.jpg'); --mobile-section-image: url('images/mobile-background-muhurtham.jpg');">
       <div class="container">
         <!-- Elegant Ganesha outline -->
         <svg class="sacred-art corner-right" viewBox="0 0 200 240" aria-hidden="true">
@@ -1596,7 +1639,7 @@
     <!-- =========================
          LOCATION
          ========================= -->
-    <section class="section location image-backed" style="--section-image: url('images/background-location.webp');">
+    <section class="section location image-backed" style="--section-image: url('images/background-location.webp'); --mobile-section-image: url('images/background-location.jpg');">
       <div class="container">
         <div class="eyebrow reveal">Where we say “I do”</div>
         <h2 class="reveal delay-1">The Celebration</h2>
