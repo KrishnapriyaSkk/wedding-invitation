@@ -24,8 +24,7 @@
       --ink: #f4e5c6;
       --muted: #c7aa87;
       --shadow: 0 25px 70px rgba(59, 11, 26, .16);
-      --serif: "Cormorant Garamond", Georgia, serif;
-      --sans: "DM Sans", Arial, sans-serif;
+      --noteworthy: "Noteworthy";
     }
 
     * { box-sizing: border-box; }
@@ -37,7 +36,7 @@
         radial-gradient(circle at 20% 10%, rgba(201,154,61,.10), transparent 25%),
         radial-gradient(circle at 80% 30%, rgba(116,21,45,.12), transparent 28%),
         #2d0714;
-      font-family: var(--sans);
+      font-family: "Noteworthy";
       overflow-x: hidden;
     }
 
@@ -64,7 +63,7 @@
     .opening::after {
       content: "✦";
       position: absolute;
-      color: rgba(230,200,117,.5);
+      color: rgba(184, 95, 68, 0.5);
       font-size: 20px;
       animation: float 5s ease-in-out infinite;
     }
@@ -136,7 +135,7 @@
       color: var(--soft-gold);
       border: 2px solid var(--soft-gold);
       background: #74152d;
-      font-family: var(--serif);
+      font-family: var(--noteworthy);
       font-size: 28px;
       transition: opacity .4s ease, transform .6s ease;
     }
@@ -166,7 +165,7 @@
       margin-bottom: 10px;
     }
     .opening-names {
-      font: 600 clamp(34px, 8vw, 60px)/.9 var(--serif);
+      font: 600 clamp(34px, 8vw, 60px)/.9 var(--noteworthy);
     }
     .opening-hint {
       margin-top: 30px;
@@ -229,7 +228,7 @@
     }
 
     h1, h2, h3 {
-      font-family: var(--serif);
+      font-family: var(--noteworthy);
       font-weight: 600;
       margin: 0;
     }
@@ -275,7 +274,7 @@
     .hero-card::after { bottom: 18px; right: 22px; }
 
     .hero-names {
-      font-size: clamp(54px, 10vw, 110px);
+      font-size: clamp(34px, 10vw, 80px);
       line-height: .8;
       color: #efd07b;
       margin: 28px 0;
@@ -283,7 +282,7 @@
     .amp { color: var(--gold); font-style: italic; }
 
     .hero-date {
-      font: 500 22px var(--serif);
+      font: 500 22px var(--noteworthy);
       color: var(--muted);
     }
 
@@ -380,7 +379,7 @@
     .parents strong {
       display: block;
       color: #f1d79a;
-      font-family: var(--serif);
+      font-family: var(--noteworthy);
       font-size: 22px;
       margin-top: 4px;
     }
@@ -404,13 +403,13 @@
     }
 
     .muhurtham {
-      font: 600 clamp(38px, 7vw, 68px) var(--serif);
+      font: 600 clamp(38px, 7vw, 68px) var(--noteworthy);
       color: #efd07b;
       margin: 18px 0 8px;
     }
 
     .event-date {
-      font: 500 24px var(--serif);
+      font: 500 24px var(--noteworthy);
       color: var(--muted);
     }
 
@@ -430,7 +429,7 @@
 
     .count-box span {
       display: block;
-      font: 600 clamp(30px, 5vw, 48px) var(--serif);
+      font: 600 clamp(30px, 5vw, 48px) var(--noteworthy);
       color: var(--soft-gold);
     }
 
@@ -460,7 +459,7 @@
     }
 
     .venue-name {
-      font: 600 clamp(36px, 6vw, 58px) var(--serif);
+      font: 600 clamp(36px, 6vw, 58px) var(--noteworthy);
       color: var(--soft-gold);
     }
 
@@ -494,7 +493,7 @@
       padding: 35px 20px;
       background: var(--deep-maroon);
       color: rgba(255,248,231,.65);
-      font: 14px var(--serif);
+      font: 14px var(--noteworthy);
     }
 
 
@@ -580,6 +579,47 @@
       border: 1px solid rgba(239,208,123,.32);
       pointer-events: none;
     }
+    /* ---------- Maroon satin ribbon opening ---------- */
+    .satin-ribbon {
+      position: absolute;
+      z-index: 8;
+      pointer-events: none;
+      background: linear-gradient(90deg, #4b0619 0%, #7e1532 22%, #a72a4c 48%, #70102b 72%, #420515 100%);
+      box-shadow: inset 0 0 10px rgba(255,190,205,.14), 0 7px 18px rgba(0,0,0,.28);
+      transition: opacity .7s ease, transform 1.15s cubic-bezier(.2,.8,.2,1), filter .7s ease;
+    }
+    .ribbon-vertical {
+      top: -1px; bottom: -1px; left: calc(50% - 15px); width: 30px;
+    }
+    .ribbon-horizontal {
+      left: -1px; right: -1px; top: calc(50% - 15px); height: 30px;
+      background: linear-gradient(180deg, #420515 0%, #74112d 22%, #a72a4c 48%, #70102b 72%, #4b0619 100%);
+    }
+    .ribbon-knot {
+      position: absolute; z-index: 12; left: 50%; top: 50%;
+      width: 92px; height: 68px; transform: translate(-50%,-50%);
+      display: grid; place-items: center; pointer-events: none;
+      filter: drop-shadow(0 12px 18px rgba(0,0,0,.35));
+      transition: opacity .45s ease .65s, transform 1.05s cubic-bezier(.2,.8,.2,1) .55s;
+    }
+    .ribbon-knot::before, .ribbon-knot::after {
+      content: ""; position: absolute; top: 12px; width: 46px; height: 44px;
+      background: linear-gradient(135deg, #a72a4c, #5b071f 78%);
+      border: 1px solid rgba(239,208,123,.22);
+    }
+    .ribbon-knot::before { right: 46px; border-radius: 75% 20% 20% 65%; transform: rotate(25deg); }
+    .ribbon-knot::after { left: 46px; border-radius: 20% 75% 65% 20%; transform: rotate(-25deg); }
+    .ribbon-knot span {
+      position: relative; z-index: 2; width: 54px; height: 54px; border-radius: 50%;
+      display: grid; place-items: center; color: #f4d98f; font: 32px "Noto Serif Malayalam", var(--noteworthy);
+      background: radial-gradient(circle at 35% 28%, #a52b4e, #6c102c 58%, #400719);
+      border: 2px solid #efd07b; box-shadow: 0 0 0 5px rgba(201,154,61,.10), inset 0 2px 5px rgba(255,255,255,.12);
+    }
+    .split-card.open .satin-ribbon { opacity: 0; filter: blur(2px); }
+    .split-card.open .ribbon-vertical { transform: translateY(-105%) rotate(4deg); }
+    .split-card.open .ribbon-horizontal { transform: translateX(105%) rotate(-3deg); }
+    .split-card.open .ribbon-knot { opacity: 0; transform: translate(-50%,-50%) scale(.45) rotate(12deg); }
+
     .split-panel {
       position: absolute;
       z-index: 4;
@@ -589,7 +629,7 @@
       background:
         radial-gradient(circle at 50% 50%, rgba(239,208,123,.08), transparent 35%),
         linear-gradient(145deg, #7a1733, #4b091d);
-      transition: transform 1.25s cubic-bezier(.18,.8,.18,1);
+      transition: transform 1.25s cubic-bezier(.18,.8,.18,1) 1.05s;
       backface-visibility: hidden;
     }
     .split-panel.left {
@@ -632,8 +672,14 @@
       margin-bottom: 14px;
     }
     .split-names {
-      font: 600 clamp(45px, 8vw, 84px)/.82 var(--serif);
+      font: 600 clamp(45px, 8vw, 84px)/.82 var(--noteworthy);
       color: #f3d58c;
+
+      .weds-text {
+        font-size: 50px;
+        padding: 20px;
+        color: rgba(237, 149, 26, 0.5);
+      }
     }
     .split-names span { color: #fff1c8; font-style: italic; }
     .split-card .opening-hint { margin-top: 32px; }
@@ -653,7 +699,7 @@
       color: #f4d98f;
       box-shadow: 0 0 0 7px rgba(201,154,61,.12), 0 0 0 11px rgba(201,154,61,.05), 0 18px 35px rgba(0,0,0,.35);
       transition: transform .55s ease, opacity .35s ease;
-      font-family: "Noto Serif Malayalam", var(--serif);
+      font-family: "Noto Serif Malayalam", var(--noteworthy);
       font-size: 39px;
     }
     .seal-button::before {
@@ -667,10 +713,11 @@
       content: "OPEN";
       position: absolute;
       bottom: -27px;
-      font: 600 8px var(--sans);
+      font: 600 8px var(--noteworthy);
       letter-spacing: .22em;
       color: rgba(244,229,198,.72);
     }
+    .seal-button { opacity: 0; pointer-events: none; }
     .split-card.open .seal-button {
       opacity: 0;
       transform: translate(-50%, -50%) scale(.55);
@@ -1168,7 +1215,7 @@
   .hero-card{width:100%;padding:52px 20px 58px;border-radius:14px}
   .hero .sacred-om{width:60px;height:60px;font-size:30px;margin-top:4px}
   .hero-card p{max-width:290px;margin-left:auto;margin-right:auto;line-height:1.7}
-  .hero-names{font-size:clamp(48px,15vw,72px);line-height:.82;margin:22px 0}
+  .hero-names{font-size:clamp(38px,15vw,52px);line-height:.82;margin:22px 0}
   .hero-date{font-size:18px}
   .motif{margin:13px 0 20px}
   .motif::before,.motif::after{width:42px}
@@ -1236,7 +1283,7 @@
 @media (max-width:390px){
   .section{padding-left:15px;padding-right:15px}
   .hero-card{padding-left:16px;padding-right:16px}
-  .hero-names{font-size:45px}
+  .hero-names{font-size:35px}
   .person-grid,.person-section.reverse .person-grid{gap:28px}
   .portrait-wrap{width:min(100%,310px)}
   .engagement-photo{flex-basis:84%;width:84%;max-width:84%}
@@ -1244,49 +1291,6 @@
   .count-box{padding-left:3px;padding-right:3px}
   .count-box span{font-size:28px}
   .count-box small{font-size:6.5px}
-}
-
-
-
-/* ============================================================
-   MOBILE-SPECIFIC BACKGROUND ART
-   Desktop background images remain completely unchanged.
-   Add the three mobile images to /images using the filenames
-   below. Mobile uses scroll rather than fixed attachment for
-   reliable iOS/Android rendering.
-   ============================================================ */
-@media (max-width: 760px) {
-  /* Each image-backed section can provide --mobile-section-image inline.
-     If omitted, the existing desktop --section-image is used as fallback. */
-  .image-backed {
-    background-image:
-      linear-gradient(
-        180deg,
-        rgba(67, 6, 23, 0.68),
-        rgba(37, 4, 15, 0.84)
-      ),
-      var(--mobile-section-image, var(--section-image, none));
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-  }
-
-  .image-backed::after {
-    background:
-      radial-gradient(
-        circle at 50% 34%,
-        rgba(180, 38, 70, 0.14),
-        transparent 48%
-      ),
-      linear-gradient(
-        90deg,
-        rgba(35, 4, 14, 0.18),
-        rgba(106, 13, 39, 0.04),
-        rgba(35, 4, 14, 0.18)
-      );
-    opacity: .72;
-  }
 }
 
 </style>
@@ -1339,14 +1343,18 @@
       <div class="card-inner">
         <div class="split-content">
           <div class="split-content-inner">
-            <div class="split-small">You are cordially invited</div>
             <div class="split-names">
-              Krishnapriya<br><span>&</span><br>Nithin
+              Krishnapriya<br>
+              <div class="weds-text"><i>weds</i></div>
+              Nithin
             </div>
           </div>
         </div>
         <div class="split-panel left"></div>
         <div class="split-panel right"></div>
+        <div class="satin-ribbon ribbon-vertical" aria-hidden="true"></div>
+        <div class="satin-ribbon ribbon-horizontal" aria-hidden="true"></div>
+        <div class="ribbon-knot" aria-hidden="true"><span>ॐ</span></div>
         <div class="seal-button" aria-hidden="true">ॐ</div>
       </div>
     </div>
@@ -1357,7 +1365,7 @@
     <!-- =========================
          WELCOME
          ========================= -->
-    <section class="section hero image-backed" style="--section-image: url('images/background-landing.jpg'); --mobile-section-image: url('images/engagement-12.jpg');">
+    <section class="section hero image-backed" style="--section-image: url('images/background-landing.jpg');">
       <div class="container">
         <!-- Elegant Ganesha outline -->
         <svg class="sacred-art ganesha" viewBox="0 0 200 240" aria-hidden="true">
@@ -1474,7 +1482,7 @@
           <!-- Replace parent names -->
           <div class="parents">
             <span>Son of</span>
-            <strong>Mrs. Sunitha R Panicker & Mr. M G Jayan </strong>
+            <strong>Mrs. Sunita Panicker & Mr. M G Jayan </strong>
           </div>
         </div>
 
@@ -1600,7 +1608,7 @@
     <!-- =========================
          MUHURTHAM + COUNTDOWN
          ========================= -->
-    <section class="section details image-backed" style="--section-image: url('images/background-muhurtham.jpg'); --mobile-section-image: url('images/mobile-background-muhurtham.jpg');">
+    <section class="section details image-backed" style="--section-image: url('images/background-muhurtham.jpg');">
       <div class="container">
         <!-- Elegant Ganesha outline -->
         <svg class="sacred-art corner-right" viewBox="0 0 200 240" aria-hidden="true">
@@ -1639,7 +1647,7 @@
     <!-- =========================
          LOCATION
          ========================= -->
-    <section class="section location image-backed" style="--section-image: url('images/background-location.webp'); --mobile-section-image: url('images/mobile-background-location.jpg');">
+    <section class="section location image-backed" style="--section-image: url('images/background-location.webp');">
       <div class="container">
         <div class="eyebrow reveal">Where we say “I do”</div>
         <h2 class="reveal delay-1">The Celebration</h2>
@@ -1774,7 +1782,7 @@
       setTimeout(() => {
         opening.classList.add("hide");
         document.body.classList.remove("locked");
-      }, 1250);
+      }, 2700);
     }
 
     splitCard.addEventListener("click", openInvitation);
